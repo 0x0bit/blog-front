@@ -1,7 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-<<<<<<< HEAD
-
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 // import App from './global-routers'
 import { ConfigProvider } from 'antd'
@@ -44,24 +42,3 @@ ReactDOM.render(
   </ConfigProvider>,
   document.getElementById('root')
 )
-
-=======
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import App from './global-routers'
-import { ConfigProvider } from 'antd'
-import { Provider } from 'mobx-react'
-
-import globalStore from './store/global-store';
-
-const stores = {globalStore}
-
-ReactDOM.render(
-  <ConfigProvider>
-    <Provider {...stores} >
-      <App/>
-    </Provider>
-  </ConfigProvider>,
-  document.getElementById('root')
-)
-
->>>>>>> c2f88218d11ab8a7f1d7208323dbe7377cc12b8c
