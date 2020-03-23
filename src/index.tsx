@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-// import App from './global-routers'
 import { ConfigProvider } from 'antd'
 import { Provider } from 'mobx-react'
 
@@ -20,6 +19,7 @@ class App extends React.Component {
 
   render() {
     return (
+
       <Router >
         <Nav />
         <Switch>
