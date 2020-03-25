@@ -1,8 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+
 import { ConfigProvider } from 'antd'
 import { Provider } from 'mobx-react'
+
 
 // 全局数据文件
 import globalStore from './store/global-store';

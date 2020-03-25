@@ -1,6 +1,4 @@
 .blog-home {
-
-
     // 轮播图
     margin-top: 10px;
     .ant-carousel .slick-slide {
@@ -16,13 +14,60 @@
     }
 
     // 主页内容样式
-    .blog-home-content {
+    .home-content {
       padding-top:10px;
-      .blog-home-advertising {
-        height: 100px;
-        background-color: rgb(182, 173, 173);
+
+      .home-content-left {
+        min-height: 20px;
+        padding-right: 20px;
+
+        .content-article-list{
+          background-color: #ececec;
+          padding: 5px 10px;
+
+          .ant-card {
+            .ant-card-head {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              padding: 0 5px;
+            }
+
+            .ant-card-body {
+              padding: 12px;
+            }
+          }
+
+
+          .article-card {
+            margin-bottom: 15px;
+            .article-desc {
+              width: 100%;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              overflow: hidden;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              text-align: justify;
+            }
+            .article-img img{
+              height: 90%;
+              width: 90%;
+            }
+          }
+        }
+      }
+
+      .home-content-right {
+        padding-left: 20px;
+        min-height: 20px;
       }
     }
+}
+
+@media screen and (max-width:990px) {
+  .blog-home .home-content .home-content-left {
+    padding: 0 10px;
+  }
 }
 
 @media screen and (max-width:765px) {

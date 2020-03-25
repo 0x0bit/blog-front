@@ -23,7 +23,7 @@ export default class Nav extends React.Component<any, any>{
       })
       return;
     })
-    
+
     this.setState({
       styl: this.state.styl ? false : true
     })
@@ -33,7 +33,11 @@ export default class Nav extends React.Component<any, any>{
     return (
       <header>
         <div className="inner-width">
-          <a href="#" className="logo"><img src="../../../assets/logo.png" alt="" /></a>
+          <a href="/" className="logo">
+            <img src="../../../assets/logo.png" alt="" />
+            <span style={{color: '#fff', textAlign:'center', lineHeight: '50px'}}>不喜欢技术还要好好学习它</span>
+          </a>
+
           <div className="menu-toggle-btn" onClick={this.handleClick.bind(this)}>
             {
               this.state.styl ? <UnorderedListOutlined /> : <CloseOutlined />
