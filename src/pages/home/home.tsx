@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Row, Col, Carousel, Tabs, Card, Tag, Popover } from 'antd';
 import {
-  FieldTimeOutlined, EyeOutlined,WechatOutlined,
-  LikeOutlined, UserOutlined, GithubOutlined,MailOutlined
+  FieldTimeOutlined, EyeOutlined, WechatOutlined,
+  LikeOutlined, UserOutlined, GithubOutlined, MailOutlined
 } from '@ant-design/icons';
 
 import ArticleListStore from './store';
@@ -87,7 +87,7 @@ export default class Home extends React.Component<any, any>{
                             title={<span><Tag color="#2db7f5">{article.tag}</Tag>{article.title}</span>}
                             actions={[
                               <span><UserOutlined />&nbsp;{article.author}</span>,
-                              <span><FieldTimeOutlined />&nbsp;{article.issueDate}</span>,
+                              <span className="article-time"><FieldTimeOutlined />&nbsp;{article.issueDate}</span>,
                               <span><EyeOutlined style={{ color: 'skyblue', fontWeight: 'bolder' }} />&nbsp;{article.pageView}</span>,
                               <span><LikeOutlined style={{ color: 'red', fontWeight: 'bolder' }} />&nbsp;{article.giveLike} </span>
                             ]}
@@ -106,6 +106,7 @@ export default class Home extends React.Component<any, any>{
                 </TabPane>
               </Tabs>
             </Col>
+
             <Col xs={0} sm={0} md={0} lg={5} className='home-content-right'>
               <div className="left-head">
                 <Card
@@ -113,8 +114,8 @@ export default class Home extends React.Component<any, any>{
                   actions={[
                     <a href="https://github.com/pureyb"><GithubOutlined /></a>,
                     <Popover
-                      placement="left"
-                      content={<img src='../../assets/wei.JPG' style={{ height: '200px'}}/>}
+                      placement="top"
+                      content={<img src='../../assets/wei.JPG' style={{ height: '200px' }} />}
                       trigger="hover">
                       <WechatOutlined />
                     </Popover>,
@@ -123,17 +124,19 @@ export default class Home extends React.Component<any, any>{
                       placement="left"
                       content={'shinesyb@gmail.com'}
                       trigger="hover">
-                    <MailOutlined />
-                  </Popover>
+                      <MailOutlined />
+                    </Popover>
                   ]}
                 >
                   <Meta
-                    style={{textAlign: 'center'}}
+                    style={{ textAlign: 'center' }}
                     title="关于我"
                     description="多喜乐，常安宁"
                   />
                 </Card>
               </div>
+
+              <div></div>
             </Col>
           </Row>
         </div>

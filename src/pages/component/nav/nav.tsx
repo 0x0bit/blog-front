@@ -1,62 +1,79 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import $ from 'jquery';
-import {
-  HomeOutlined, FireOutlined, SmileOutlined, UserSwitchOutlined,CloseOutlined,
-  SoundOutlined, SolutionOutlined, LoginOutlined, UnorderedListOutlined
-} from '@ant-design/icons';
+import { Row, Col, Input, Button } from 'antd';
+const { Search } = Input;
+
+import Icon, { MenuUnfoldOutlined, CloseOutlined } from '@ant-design/icons';
+import { blogSvg, homeSvg, computerSvg, aboutSvg, messageSvg, loginSvg } from '../../../common/common-svg';
+const BlogSvg = (props: any) => <Icon component={blogSvg} {...props} />;
+const HomeSvg = (props: any) => <Icon component={homeSvg} {...props} />;
+const ComputerSvg = (props: any) => <Icon component={computerSvg} {...props} />;
+const AboutSvg = (props: any) => <Icon component={aboutSvg} {...props} />;
+const MessageSvg = (props: any) => <Icon component={messageSvg} {...props} />;
+const LoginSvg = (props: any) => <Icon component={loginSvg} {...props} />;
 
 export default class Nav extends React.Component<any, any>{
-  constructor(props:any) {
-    super(props)
+  constructor(props: any) {
+    super(props);
+
     this.state = {
-      styl: true,
+      activeBtn: true,
     }
-  }
+  };
 
   handleClick() {
-    $('.navigation-menu').toggleClass('active');
-    $(document).on("click", ".navigation-menu>a",  () => {
-      $('.navigation-menu').removeClass('active');
-      this.setState({
-        styl: true,
-      })
-      return;
+    $('.blog-head-left').toggleClass('active');
+
+    $(document).on("click", ".blog-head-left>a", () => {
+      $('.blog-head-left').removeClass('active');
+      this.setState({ activeBtn: true})
     })
 
     this.setState({
-      styl: this.state.styl ? false : true
+      activeBtn: this.state.activeBtn ? false : true
     })
   }
 
   render() {
     return (
-      <header>
-        <div className="inner-width">
-          <a href="/" className="logo">
-            <img src="../../../assets/logo.png" alt="" />
-            <span style={{color: '#fff', textAlign:'center', lineHeight: '50px'}}>不喜欢技术还要好好学习它</span>
-          </a>
+      <React.Fragment>
+        <Row className="blog">
+          <Col span={3} className='hidden-xs'></Col>
+          <Col xs={24} sm={24} md={18} lg={18}>
+            <Row className='blog-head'>
+              <Col span={2}>
+                <a href='/' className='blog-head-logo'><BlogSvg className='svg-style' /></a>
+              </Col>
+              <Col xs={24} sm={24} md={14} lg={12} className='blog-head-left'>
+                <Link to={"/"}><HomeSvg className="svg-style" /><span>主页</span></Link>
+                <Link to={"/language"}><ComputerSvg className='svg-style' /><span>技术分类</span></Link>
+                <Link to={"/about"}><AboutSvg className='svg-style' /><span>关于博主</span></Link>
+                <Link to={"/msg"}><MessageSvg className='svg-style' /><span>给我留言</span></Link>
+              </Col>
 
-          <div className="menu-toggle-btn" onClick={this.handleClick.bind(this)}>
+              <Col xs={0} sm={0} md={8} lg={10} className="hidden-xs">
+                <div className="blog-head-right">
+                  <Search
+                    className="blog-head-search hidden-md"
+                    placeholder="请输入内容"
+                    onSearch={value => console.log(value)} enterButton />
+                  <Button type="dashed" href="/login"><LoginSvg className='svg-style' />
+                    登录
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={3} className="hidden-xs"></Col>
+          <div onClick={this.handleClick.bind(this)}>
             {
-              this.state.styl ? <UnorderedListOutlined /> : <CloseOutlined />
+              this.state.activeBtn ? <MenuUnfoldOutlined className='menu-toggle-btn' /> : <CloseOutlined className='menu-toggle-btn' />
             }
           </div>
+        </Row>
 
-          <nav className="navigation-menu">
-            <Link to={'/'}><HomeOutlined style={{color: "#ff6b6b"}}/>主页</Link>
-            <Link to={'/language'}><FireOutlined style={{color: '#0abde3' }}/>技术分类</Link>
-            <Link to={'/about'}><SmileOutlined style={{color: '#feca57' }}/>关于博主</Link>
-            <Link to={'/exchange'}><UserSwitchOutlined style={{ color: '#5f27cd' }}/>技术交流</Link>
-            <Link to={'/msg'}> <SoundOutlined style={{color: '#ff6b6b' }}/>给我留言</Link>
-            <Link to={'/submit'}><SolutionOutlined style={{color: '#1dd1a1' }}/>投稿</Link>
-            <Link to={'/login'}><LoginOutlined style={{ color: '#52c41a'}}/>登录</Link>
-          </nav>
-        </div>
-      </header>
+      </React.Fragment>
     )
   }
 }
-
-

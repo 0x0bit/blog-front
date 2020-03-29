@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, Layout } from 'antd';
+const { Footer, Content } = Layout;
 import { Provider } from 'mobx-react'
 
 
@@ -17,22 +16,22 @@ import Login from './pages/login/login';
 import Home from './pages/home';
 import Language from './pages/language';
 import User from './pages/user';
+import Foot from './pages/component/footer';
 
 class App extends React.Component {
 
   render() {
     return (
-
-      <Router >
+      <Layout>
+        <Router >
         <Nav />
-        <Switch>
-          <Route path={'/home'} component={Home} />
-          <Route path={"/login"} component={Login} />
-          <Route path={"/language"} component={Language} />
-          <Route path={"/user"} component={User} />
-          <Redirect from={"/"} to={"/home"} />
-        </Switch>
-      </Router>
+            <Route exact path={'/'} component={Home} />
+            <Route path={"/login"} component={Login} />
+            <Route path={"/language"} component={Language} />
+            <Route path={"/about"} component={User} />
+          </Router>
+        <Footer><Foot/></Footer>
+      </Layout>
     )
   }
 }
