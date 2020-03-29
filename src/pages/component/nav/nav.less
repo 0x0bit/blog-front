@@ -1,101 +1,91 @@
-@height: 50px;
-
-header {
+@height: 48px;
+.blog {
+  width: 100%;
   height: @height;
+  line-height: 50px;
   background: rgba(39, 54, 68, 0.9);
+  box-sizing: border-box;
 
-  .inner-width {
-    max-width: 100%;
-    padding: 0, 10px;
-    margin: auto;
+  .blog-head {
+    color: #fff;
 
-    .menu-toggle-btn {
-      float: right;
-      height: @height;
-      line-height: @height  !important;
-      display: none !important;
-      cursor: pointer;
-      margin-right: 15px;
-      color: #fff;
-      font-size: 23px;
+    .svg-style {
+      vertical-align: middle;
     }
 
-    .logo {
-      float: left;
-      padding: 0 20px;
+    .blog-head-left {
+      display: flex;
+      span {
+        padding: 0 4px 0;
+      }
+      a {
+        flex: 1;
+        color: #fff;
+        height: @height;
+        text-align: center;
+        transition: .3s linear;
+      }
 
-      img {
-        height: 45px;
+      a:hover {
+        background: rgba(107, 108, 109, 0.5);
       }
     }
 
-    .navigation-menu {
+    .blog-head-right {
       float: right;
-      display: flex;
-      align-items: center;
-      min-height: @height;
-      margin-right: 20px;
-
-      a {
-        color: #ddd;
-        text-transform: uppercase;
-        font-size: 14px;
-        padding: 0px 12px;
-        height: @height;
-        line-height: @height;
-        transition: .3s linear;
-
-        span {
-          padding: 0 5px;
+      .blog-head-search {
+        width: 280px;
+        margin: 8px 15px 0 0;
+        border-radius: 8px;
+        input {
+          background-color: transparent;
+          color: #fff;
         }
       }
     }
+  }
 
-    .navigation-menu a:hover {
-      box-sizing: border-box;
-      border-bottom: 5px solid rgb(135, 206, 235);
-      transform: scale(1.1);
-    }
+  .menu-toggle-btn {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    display: none;
+    font-size: 25px;
+    color: #fff;
   }
 }
 
-@media screen and (max-width: 765px) {
-  header {
-    .inner-width {
-      .menu-toggle-btn {
-        display: block !important;
-      }
 
-      .blog img{
-        padding-left: 100px;
-      }
+@media screen and (max-width: 780px) {
 
-      .navigation-menu {
-        position: fixed;
-        margin-right: 0;
+  .blog {
+    .blog-head {
+      .blog-head-logo {
+        margin-left: 50px;
+      }
+      .blog-head-left {
+        position: absolute;
+        display: none;
         width: 100%;
-        background: rgba(46, 63, 80, 0.9);
+        height: @height;
         top: @height;
         right: 0;
-        display: none;
-        padding: 20px 20px;
-        box-sizing: border-box;
-        text-align: center;
         z-index: 99999;
-
         a {
-          display: block;
-          margin: 10px 0;
+          height: @height;
           width: 100%;
-        }
+          background: rgb(59, 55, 55);
+          color: skyblue;
+          display: block !important;
 
+        }
         a:hover {
-          background: rgba(226, 225, 225, 0.5);
-          border-bottom: 0;
+          border-bottom: 1px solid skyblue;
+          background: rgb(3, 49, 53);
         }
       }
 
-      .navigation-menu::before {
+      .blog-head-left::before {
         content: "";
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
@@ -104,16 +94,31 @@ header {
         top: -10px;
         right: 15px;
       }
-
-      .navigation-menu.active {
+      .blog-head-left.active {
         display: block;
         animation-duration: 0.5s;
         animation-name: slideIn;
         transition: .3s linear;
       }
     }
+
+    .menu-toggle-btn {
+      display: block;
+    }
+  }
+
+  .hidden-xs {
+    display: none !important;
   }
 }
+
+@media screen and (max-width: 1250px) {
+  .hidden-md {
+    display: none !important;
+  }
+}
+
+
 
 @keyframes slideIn {
   from {
@@ -126,3 +131,12 @@ header {
     opacity: 1;
   }
 }
+
+.ant-layout-header {
+  min-height: @height;
+  padding: 0;
+  color: rgba(0, 0, 0, 0);
+  line-height: 0;
+  background: rgba(0, 0, 0, 0);
+}
+
