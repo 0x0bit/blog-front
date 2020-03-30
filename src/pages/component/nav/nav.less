@@ -1,7 +1,8 @@
-@height: 5.5vh;
+@height1: 5.5vh;
+@height2: 48px;
 .blog {
   width: 100%;
-  height: @height;
+  height: @height1;
   line-height: 50px;
   background: rgba(39, 54, 68, 0.9);
   box-sizing: border-box;
@@ -21,7 +22,7 @@
       a {
         flex: 1;
         color: #fff;
-        height: @height;
+        height: @height1;
         text-align: center;
         transition: .3s linear;
       }
@@ -67,12 +68,12 @@
         position: absolute;
         display: none;
         width: 100%;
-        height: @height;
-        top: @height;
+        height: @height2;
+        top: @height2;
         right: 0;
         z-index: 99999;
         a {
-          height: @height;
+          height: @height2;
           width: 100%;
           background: rgb(59, 55, 55);
           color: skyblue;
@@ -130,13 +131,5 @@
     transform: translateX(0);
     opacity: 1;
   }
-}
-
-.ant-layout-header {
-  min-height: @height;
-  padding: 0;
-  color: rgba(0, 0, 0, 0);
-  line-height: 0;
-  background: rgba(0, 0, 0, 0);
 }
 
