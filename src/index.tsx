@@ -17,6 +17,7 @@ import Home from './pages/home';
 import Language from './pages/language';
 import User from './pages/user';
 import Foot from './pages/component/footer';
+import LeaveMsg from './pages/leave-message';
 
 class App extends React.Component {
 
@@ -29,6 +30,7 @@ class App extends React.Component {
             <Route path={"/login"} component={Login} />
             <Route path={"/language"} component={Language} />
             <Route path={"/about"} component={User} />
+            <Route path={"/msg"} component={LeaveMsg} />
           </Router>
         <Footer><Foot/></Footer>
       </Layout>
