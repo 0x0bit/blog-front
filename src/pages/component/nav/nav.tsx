@@ -58,9 +58,7 @@ export default class Nav extends React.Component<any, any>{
                     className="blog-head-search hidden-md"
                     placeholder="请输入内容"
                     onSearch={value => console.log(value)} enterButton />
-                  <Button type="dashed" href="/login"><LoginSvg className='svg-style' />
-                    登录
-                  </Button>
+                  <Button type="dashed" href="/login"><LoginSvg className='svg-style'/>登录</Button>
                 </div>
               </Col>
             </Row>
