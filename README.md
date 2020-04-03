@@ -1,6 +1,6 @@
-# 一个blog 项目
+# A blog project
 
-一个使用 typeScript + react + antd 开发的个人 blog
+A personal blog developed using typeScript + react + antd
 
 ## 项目结构
 
@@ -18,18 +18,18 @@
 |—— webpack.config —————————————————————— webpack 配置文件
 ```
 
-## 使用
+## use
 ```
 git clone ...
 ```
 
-## 下载相关对应的包：
+## Download the corresponding package:
 
 ```
 yarn install
 ```
 
-## 本地调试运行：
+## Local debugging operation:
 
 ```
 yarn start
