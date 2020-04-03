@@ -1,6 +1,6 @@
 .about-user {
   min-height: 88vh;
-  margin-top: 20px;
+  margin: 20px 0;
 
   .ant-card-body {
     padding: 24px 0;
@@ -14,5 +14,53 @@
       text-align: center;
     }
   }
+  .about-me-myself {
+    .ant-card-bordered {
+      border: none;
+    }
 
+    .about-me-msg {
+      text-align: center;
+      img {
+        width: 100px;
+        height: 100px;
+        margin-top: 20px;
+        margin: 0 auto;
+        border-radius: 50%;
+      }
+    }
+
+    .about-me-skills {
+      .ant-progress {
+        margin: 10px 0;
+        .ant-progress-inner{
+          border-radius: 0;
+        }
+        .ant-progress-bg{
+          border-radius: 0;
+        }
+
+      }
+    }
+
+    .about-me-contact {
+      text-align: center;
+      img {
+        width: 30vh;
+        height: 35vh;
+        margin: 0 auto;
+        border: 1px solid skyblue;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768) {
+  .about-user {
+    padding: 0 10px;
+
+    .ant-card {
+      padding: 0 20px;
+    }
+  }
 }
