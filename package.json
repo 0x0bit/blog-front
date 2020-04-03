@@ -3,11 +3,14 @@
   "version": "1.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://pureyb.github.io/front-blog",
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "ts-check": "tsc --noEmit",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
+
   "dependencies": {
     "@ant-design/pro-layout": "^4.10.14",
     "@babel/core": "^7.8.4",
@@ -35,6 +38,7 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
+    "gh-pages": "^2.2.0",
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
     "less": "^3.11.1",

@@ -26,7 +26,8 @@ module.exports = {
 
   // 出口
   output: {
-    path: `${__dirname}/dist/${pkg.version}`,
+    // path: `${__dirname}/dist/${pkg.version}`,
+    path: `${__dirname}/dist`,
     //添加hash可以防止文件缓存,每次都会生成4位hash串
     filename: 'bundle.[hash:4].js',
     publicPath: '/'
