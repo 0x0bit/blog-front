@@ -10,7 +10,6 @@
     "build": "webpack --mode production",
     "deploy": "gh-pages -d dist"
   },
-
   "dependencies": {
     "@ant-design/pro-layout": "^4.10.14",
     "@babel/core": "^7.8.4",
@@ -39,6 +38,7 @@
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "gh-pages": "^2.2.0",
+    "gsap": "^3.2.6",
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
     "less": "^3.11.1",
@@ -48,6 +48,7 @@
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "rc-tween-one": "^2.6.8",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.19",
