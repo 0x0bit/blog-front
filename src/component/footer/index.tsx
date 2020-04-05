@@ -1,4 +1,4 @@
-import {asyncComponent} from '../../../common/utils'
+import {asyncComponent} from '../../common/utils'
 import './foot.less'
 
 export default asyncComponent(async () => {
