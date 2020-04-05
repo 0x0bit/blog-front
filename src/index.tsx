@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { ConfigProvider, Layout } from 'antd';
-const { Footer} = Layout;
+const { Footer } = Layout;
 import { Provider } from 'mobx-react'
 
 
@@ -11,12 +11,12 @@ import globalStore from './store/global-store';
 const stores = { globalStore }
 
 // 模块引入
-import Nav from './pages/component/nav';
+import Nav from './component/nav';
 import Login from './pages/login/login';
 import Home from './pages/home';
 import Language from './pages/language';
 import User from './pages/user';
-import Foot from './pages/component/footer';
+import Foot from './component/footer';
 import LeaveMsg from './pages/leave-message';
 import Page404 from './pages/404';
 class App extends React.Component {
@@ -25,16 +25,17 @@ class App extends React.Component {
     return (
       <Layout>
         <Router >
-        <Nav />
+          <Nav />
+          <Switch>
             <Route exact path={'/'} component={Home} />
-            <Route path={"/login"} component={Login} />
-            <Route path={"/language"} component={Language} />
-            <Route path={"/about"} component={User} />
-            <Route path={"/msg"} component={LeaveMsg} />
-            <Route path={"/404"} component={Page404} />
-
-          </Router>
-        <Footer><Foot/></Footer>
+            <Route exact path={"/login"} component={Login} />
+            <Route exact path={"/language"} component={Language} />
+            <Route exact path={"/about"} component={User} />
+            <Route exact path={"/msg"} component={LeaveMsg} />
+            <Route component={Page404} />
+          </Switch>
+        </Router>
+        <Footer><Foot /></Footer>
       </Layout>
     )
   }
