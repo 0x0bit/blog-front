@@ -1,77 +1,153 @@
 import * as React from "react";
-import { NavLink } from "react-router-dom";
-import $ from 'jquery';
-import { Row, Col, Input, Button } from 'antd';
-const { Search } = Input;
+import TweenOne from 'rc-tween-one';
+import { inject, observer } from "mobx-react";
+import { Menu} from 'antd';
+const { Item, SubMenu } = Menu;
+import { Link } from "react-router-dom";
 
-import Icon, { MenuUnfoldOutlined, CloseOutlined } from '@ant-design/icons';
-import { blogSvg, homeSvg, computerSvg, aboutSvg, messageSvg, loginSvg } from '../../common/common-svg';
-const BlogSvg = (props: any) => <Icon component={blogSvg} {...props} />;
-const HomeSvg = (props: any) => <Icon component={homeSvg} {...props} />;
-const ComputerSvg = (props: any) => <Icon component={computerSvg} {...props} />;
-const AboutSvg = (props: any) => <Icon component={aboutSvg} {...props} />;
-const MessageSvg = (props: any) => <Icon component={messageSvg} {...props} />;
-const LoginSvg = (props: any) => <Icon component={loginSvg} {...props} />;
+import Icon from '@ant-design/icons';
 
+@inject("globalstore")
+@observer
 export default class Nav extends React.Component<any, any>{
   constructor(props: any) {
     super(props);
-
     this.state = {
-      activeBtn: true,
-    }
+      phoneOpen: undefined,
+    };
+  }
+
+  phoneClick = () => {
+    const phoneOpen = !this.state.phoneOpen;
+    this.setState({
+      phoneOpen,
+    });
   };
 
-  handleClick() {
-    $('.blog-head-left').toggleClass('active');
-
-    $(document).on("click", ".blog-head-left>a", () => {
-      $('.blog-head-left').removeClass('active');
-      this.setState({ activeBtn: true})
-    })
-
-    this.setState({
-      activeBtn: this.state.activeBtn ? false : true
-    })
-  }
+  public dataSource = this.props.globalstore.navSource;
 
   render() {
-    return (
-      <React.Fragment>
-        <Row className="blog">
-          <Col span={3} className='hidden-xs'></Col>
-          <Col xs={24} sm={24} md={18} lg={18}>
-            <Row className='blog-head'>
-              <Col span={2}>
-                <a href='/' className='blog-head-logo'><BlogSvg className='svg-style' /></a>
-              </Col>
-              <Col xs={24} sm={24} md={14} lg={12} className='blog-head-left'>
-                <NavLink activeClassName='nav-active' to={"/"}><HomeSvg className="svg-style" /><span>主页</span></NavLink>
-                <NavLink activeClassName='nav-active' to={"/language"}><ComputerSvg className='svg-style' /><span>技术分类</span></NavLink>
-                <NavLink activeClassName='nav-active' to={"/about"}><AboutSvg className='svg-style' /><span>关于博主</span></NavLink>
-                <NavLink activeClassName='nav-active' to={"/msg"}><MessageSvg className='svg-style' /><span>给我留言</span></NavLink>
-              </Col>
+    const { isMobile, ...props } = this.props;
+    const { phoneOpen } = this.state;
+    const navData = this.dataSource.Menu.children;
 
-              <Col xs={0} sm={0} md={8} lg={10} className="hidden-xs">
-                <div className="blog-head-right">
-                  <Search
-                    className="blog-head-search hidden-md"
-                    placeholder="请输入内容"
-                    onSearch={value => console.log(value)} enterButton />
-                  <Button type="dashed" href="/login"><LoginSvg className='svg-style'/>登录</Button>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={3} className="hidden-xs"></Col>
-          <div onClick={this.handleClick.bind(this)}>
-            {
-              this.state.activeBtn ? <MenuUnfoldOutlined className='menu-toggle-btn' /> : <CloseOutlined className='menu-toggle-btn' />
+    const navChildren = navData.map((item: any) => {
+      const { path, name, icon, subItem } = item;
+      if (subItem) {
+        return (
+          <SubMenu
+            key={item.key}
+            className={item.className}
+            title={
+              <Link to={path} className='header-item-block header-item'>
+                <Icon component={icon} className='svg-style' />{name}
+              </Link>
             }
-          </div>
-        </Row>
+            popupClassName="header-item-child"
+          >
 
-      </React.Fragment>
-    )
+            {subItem.map(($item: any, ii: number) => {
+              const { children: childItem } = $item;
+              const child = (
+                <div key={childItem.key} className='item-sub'>
+                  <Link to={childItem.path}>
+                    <Icon component={childItem.icon} className='svg-style' />
+                    {childItem.name}
+                  </Link>
+                </div>
+              );
+
+              return (
+                <Item key={$item.key || ii.toString()} {...$item}>
+                  {child}
+                </Item>
+              );
+            })}
+          </SubMenu>
+        );
+      }
+
+      return (
+        <Item key={item.key} className={item.className}>
+          <Link to={path} className='header-item-block'>
+            <Icon component={icon} className='svg-style' />{name}
+          </Link>
+        </Item>
+      );
+    });
+
+    const moment = phoneOpen === undefined ? 300 : null;
+    return (
+      // logo动画
+      <TweenOne
+        component="header"
+        animation={{ opacity: 0, type: 'from' }}
+        {...this.dataSource.theme === 'light' ? { ...this.dataSource.wrapper.light } : { ...this.dataSource.wrapper.dark }}
+        {...props}
+      >
+
+        <div
+          className={`home-page ${phoneOpen ? ' open' : ''}`}
+        >
+          <TweenOne
+            animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
+            {...this.dataSource.logo}
+          >
+            <img width="100%" src={this.dataSource.logo.imghref} alt="img" />
+          </TweenOne>
+
+          {isMobile && (
+            <div
+              {...this.dataSource.mobileMenu}
+              onClick={() => {
+                this.phoneClick();
+              }}
+            >
+
+              {/* 小屏幕下拉按钮 */}
+
+              {
+                [0, 0, 0].map((_, i) => {
+                  return (
+                    <em key={i} className={this.dataSource.theme === 'light' ? 'em-light' : 'em-dark'} />
+                  )
+                })
+              }
+
+            </div>
+          )}
+
+          {/* 菜单栏动画 */}
+          <TweenOne
+            {...this.dataSource.Menu}
+            animation={
+              isMobile
+                ? {
+                  height: 0,
+                  duration: 500,
+                  onComplete: (e) => {
+                    if (this.state.phoneOpen) {
+                      e.target.style.height = 'auto';
+                    }
+                  },
+                  ease: 'easeInOutQuad',
+                }
+                : null
+            }
+            moment={moment}
+            reverse={!!phoneOpen}
+          >
+            <Menu
+              mode={isMobile ? 'inline' : 'horizontal'}
+              defaultSelectedKeys={['sub0']}
+              theme={this.dataSource.theme}
+            >
+              {navChildren}
+            </Menu>
+          </TweenOne>
+        </div>
+      </TweenOne>
+    );
   }
 }
+

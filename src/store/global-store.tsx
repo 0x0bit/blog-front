@@ -1,34 +1,92 @@
-import React from 'react';
 import { observable, action, computed, runInAction } from 'mobx';
-import Icon from '@ant-design/icons';
-import { githubSvg, emailSvg, weiBoSvg } from '../common/common-svg';
+import {
+  homeSvg, computerSvg, aboutSvg, messageSvg,
+  githubSvg, emailSvg, weiBoSvg} from '../common/common-svg';
+
+import Home from '../pages/home';
+import Login from '../pages/login/login';
+import Language from '../pages/language';
+import User from '../pages/user';
+import LeaveMsg from '../pages/leave-message';
 
 export class GlobalStore {
-  @observable navList = [
-    {
-      url: '/',
-      code: 'Home',
-      name: '主页'
+  @observable navSource = {
+    theme: 'light', // 主题颜色 light or dark
+    wrapper: {
+      light: {
+        className: 'header header-light home-page-wrapper'
+      },
+      dark: {
+        className: 'header header-dark home-page-wrapper'
+      }
     },
 
-    {
-      url: '/language',
-      code: 'language',
-      name: '文章分类'
+    logo: {
+      className: 'header-logo',
+      imghref: 'https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg',
     },
+    // 菜单栏
+    Menu: {
+      className: 'header-menu',
+      children: [
+        {
+          key: 'item0',
+          path: '/',
+          name: '首页',
+          icon: homeSvg,
+          component: Home,
+          exact: true
+        },
+        {
+          key: 'item1',
+          path: '/lag',
+          name: "技术分类",
+          icon: computerSvg,
+          component: Language,
+          exact: false
+        },
+        {
+          key: 'item2',
+          path: '/about',
+          name: "关于博主",
+          icon: aboutSvg,
+          component: User,
+          exact: false
+        },
+        {
+          key: 'item3',
+          path: '/msg',
+          name: "给我留言",
+          icon: messageSvg,
+          component: LeaveMsg,
+          exact: false
+        },
 
-    {
-      url: '/articles',
-      code: 'articles',
-      name: '所有文章'
+        // 想要下拉导航，配置时用如下格式
+        /**
+        {
+          key: 'item',
+          path: '/msg',
+          name: "父级菜单",
+          icon: messageSvg,
+          component: LeaveMsg,
+          exact: false,
+          children: [
+            {
+              key: 'item3',
+              path: 'son1',
+              name: " 子级菜单",
+              icon: messageSvg,
+              component: LeaveMsg,
+              exact: false
+        },
+          ]
+        },
+         */
+      ],
     },
-
-    {
-      url: '/user',
-      code: 'user',
-      name: '关于我'
-    }
-  ];
+    mobileMenu: { className: 'header-mobile-menu' },
+  };
 
 
   @observable personMsg = {
