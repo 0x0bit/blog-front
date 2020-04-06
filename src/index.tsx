@@ -1,37 +1,66 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import './common/common.less'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { ConfigProvider, Layout } from 'antd';
+import { enquireScreen } from 'enquire-js';
 const { Footer } = Layout;
 import { Provider } from 'mobx-react'
 
 
+
 // 全局数据文件
-import globalStore from './store/global-store';
-const stores = { globalStore }
+import globalstore from './store/global-store';
+const stores = { globalstore }
 
 // 模块引入
 import Nav from './component/nav';
-import Login from './pages/login/login';
-import Home from './pages/home';
-import Language from './pages/language';
-import User from './pages/user';
 import Foot from './component/footer';
-import LeaveMsg from './pages/leave-message';
 import Page404 from './pages/404';
+
+let isMobile: boolean;
+enquireScreen((b: any) => {
+  isMobile = b;
+});
+
+const { location } = window;
+
 class App extends React.Component {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      isMobile,
+      show: !location.port,
+    };
+  }
+  componentDidMount() {
+    // 适配手机屏幕;
+    enquireScreen((b: boolean) => {
+      this.setState({ isMobile: !!b });
+    });
+
+    if (location.port) {
+      setTimeout(() => {
+        this.setState({
+          show: true,
+        });
+      }, 500);
+    }
+  }
 
   render() {
     return (
       <Layout>
         <Router >
-          <Nav />
+          <Nav isMobile={this.state.isMobile}/>
           <Switch>
-            <Route exact path={'/'} component={Home} />
-            <Route exact path={"/login"} component={Login} />
-            <Route exact path={"/language"} component={Language} />
-            <Route exact path={"/about"} component={User} />
-            <Route exact path={"/msg"} component={LeaveMsg} />
+            {
+              globalstore.navSource.Menu.children.map((item:any, i) => {
+                return (
+                  <Route exact={item.exact} path={item.path} component={item.component} key={i} />
+                )
+              })
+            }
             <Route component={Page404} />
           </Switch>
         </Router>

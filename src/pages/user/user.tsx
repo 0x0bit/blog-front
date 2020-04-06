@@ -5,13 +5,13 @@ import { inject, observer } from "mobx-react";
 const { Meta } = Card;
 
 
-@inject("globalStore")
+@inject("globalstore")
 @observer
 export default class User extends React.Component<any, any>{
   constructor(props: any) {
     super(props);
   }
-  public personMsgStore = this.props.globalStore.personMsg;
+  public personMsgStore = this.props.globalstore.personMsg;
 
   render() {
     return (
