@@ -1,18 +1,32 @@
 .blog-home {
   min-height: 88vh;
   // 轮播图
-  margin-top: 10px;
-
-  .ant-carousel .slick-slide {
-    text-align: center;
-    height: 280px;
-    line-height: 280px;
-    background: #364d79;
-    overflow: hidden;
+  .banner-user{
+    margin-top: 10px;
+    height: 28vh;
   }
-
-  .ant-carousel .slick-slide h3 {
+  .banner-user-elem{
+    text-align: center;
     color: #fff;
+    position: relative;
+    overflow: hidden;
+
+    .banner-user-title{
+      font-size: 32px;
+      top: 40%;
+    }
+    .banner-user-text{
+      top: 40%;
+    }
+
+    .bg{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
   }
 
   // 主页内容样式
@@ -24,8 +38,7 @@
       padding-right: 20px;
 
       .content-article-list {
-        background-color: #ececec;
-        padding: 5px 10px;
+        background-color: rgba(240, 239, 239, 0.2);
 
         .ant-card {
           .ant-card-head {

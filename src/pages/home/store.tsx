@@ -1,6 +1,28 @@
 import { observable, toJS, action } from 'mobx';
 
-export default class ArticleListStore {
+class homestore {
+  @observable banner = [
+    {
+      title: '置心一处时',
+      text: '万里不远，不远万里',
+      imghref: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3039413855,4006945818&fm=15&gp=0.jpg'
+    },
+    {
+      title: '愿岁并谢',
+      text: '与常友兮',
+      imghref: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586240385543&di=cfbf0283ac5043d5d03f5853a8e02a5d&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff50414fe6206155e83a1d3ff55f16dcb0e38947557fb9-WcTS9E_fw658'
+    },
+    {
+      title: '如果樱花常开',
+      text: '如果故人常在，那么两厢邂逅，如何动人情怀。',
+      imghref: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586240363491&di=c6727bb61356c4246b6b119c463f3e77&imgtype=0&src=http%3A%2F%2Fwww.winwintutoring.com%2Fwp-content%2Fuploads%2F2018%2F05%2Fblog-banner.png'
+    },
+    {
+      title: 'To the world',
+      text: 'you may be just one person. To the person you may be the world.',
+      imghref: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1882919614,786654992&fm=15&gp=0.jpg'
+    },
+  ]
   // 全部文章列表
   @observable articleLists = [
     {
@@ -62,3 +84,5 @@ export default class ArticleListStore {
     console.log(key);
   }
 }
+
+export default new homestore();
