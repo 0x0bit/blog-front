@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 
 // index父页面渲染函数
+// index父页面渲染函数
 export function asyncComponent(getComponent:any) {
   return class AsyncComponent extends Component {
-    static Component = null
+    static Component:any = null
     state = { Component: AsyncComponent.Component }
 
     componentWillMount() {
@@ -19,9 +20,7 @@ export function asyncComponent(getComponent:any) {
     render() {
       const { Component } = this.state
       if (Component) {
-        return (
-          <Component {...this.props} />
-        );
+        return <Component {...this.props} />
       }
       return null
     }

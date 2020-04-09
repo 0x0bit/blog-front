@@ -1,18 +1,13 @@
 import * as React from "react";
-import { Row, Col, Carousel, Tabs, Card, Tag, Popover } from 'antd';
-import {
-  FieldTimeOutlined, EyeOutlined, WechatOutlined,
-  LikeOutlined, UserOutlined, GithubOutlined, MailOutlined
-} from '@ant-design/icons';
+import { Row, Col, Tabs, Card, Popover } from 'antd';
+import { WechatOutlined,GithubOutlined, MailOutlined} from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
 import homestore from './store';
 import Banner from './banner';
+import ArticleList from './article-list'
+
 const { TabPane } = Tabs;
 const { Meta } = Card;
-
-function callback(key: any) {
-  console.log(key);
-}
 
 export default class Home extends React.Component<any, any>{
   public store = homestore;
@@ -31,70 +26,12 @@ export default class Home extends React.Component<any, any>{
           <div className="home-content" key="content">
             <Row justify="center">
               <Col xs={24} sm={24} md={18} lg={13} className='home-content-left'>
-                <Tabs defaultActiveKey="1" onChange={store.tabOnClickChange}>
+                <Tabs defaultActiveKey="1" onChange={store.tabOnClickChange} style={{margin:0}}>
                   <TabPane tab="推荐阅读" key="1" >
-
-                    <div className='content-article-list'>
-                      <QueueAnim delay={300} ease={['easeOutQuart', 'easeInOutQuart']}>
-                        {
-                          store.articleLists.map((article: any, index: number) => {
-                            return (
-                              <Card
-                                key={index}
-                                className="article-card"
-                                hoverable={true}
-                                title={<span><Tag color="#2db7f5">{article.tag}</Tag>{article.title}</span>}
-                                actions={[
-                                  <span><UserOutlined />&nbsp;{article.author}</span>,
-                                  <span><FieldTimeOutlined />&nbsp;{article.issueDate}</span>,
-                                  <span><EyeOutlined style={{ color: 'skyblue', fontWeight: 'bolder' }} />&nbsp;{article.pageView}</span>,
-                                  <span><LikeOutlined style={{ color: 'red', fontWeight: 'bolder' }} />&nbsp;{article.giveLike} </span>
-                                ]}
-                              >
-                                <Row>
-                                  <Col span={17}><p className='article-desc'>{article.desc}</p></Col>
-                                  <Col span={6} offset={1} className="article-img">
-                                    <img src={article.articleImg} alt={article.title} />
-                                  </Col>
-                                </Row>
-                              </Card>
-                            )
-                          })
-                        }
-                      </QueueAnim>
-                    </div>
+                    <ArticleList />
                   </TabPane>
-
                   <TabPane tab="所有文章" key="2" >
-                    <div className='content-article-list'>
-                      <QueueAnim delay={300}>
-                        {
-                          store.hotarticleLists.map((article: any, index: number) => {
-                            return (
-                              <Card
-                                key={index}
-                                className="article-card"
-                                hoverable={true}
-                                title={<span><Tag color="#2db7f5">{article.tag}</Tag>{article.title}</span>}
-                                actions={[
-                                  <span><UserOutlined />&nbsp;{article.author}</span>,
-                                  <span className="article-time"><FieldTimeOutlined />&nbsp;{article.issueDate}</span>,
-                                  <span><EyeOutlined style={{ color: 'skyblue', fontWeight: 'bolder' }} />&nbsp;{article.pageView}</span>,
-                                  <span><LikeOutlined style={{ color: 'red', fontWeight: 'bolder' }} />&nbsp;{article.giveLike} </span>
-                                ]}
-                              >
-                                <Row>
-                                  <Col xs={24} sm={24} md={17} lg={17} className='article-desc'>{article.desc}</Col>
-                                  <Col xs={0} sm={0} md={6} lg={6} offset={1} className="article-img">
-                                    <img src={article.articleImg} alt={article.title} />
-                                  </Col>
-                                </Row>
-                              </Card>
-                            )
-                          })
-                        }
-                      </QueueAnim>
-                    </div>
+                    <ArticleList />
                   </TabPane>
                 </Tabs>
               </Col>
@@ -127,8 +64,6 @@ export default class Home extends React.Component<any, any>{
                     />
                   </Card>
                 </div>
-
-                <div></div>
               </Col>
             </Row>
           </div>
