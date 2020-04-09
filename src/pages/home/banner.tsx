@@ -8,29 +8,31 @@ export default class Banner extends React.Component {
   public bannerstore = homestore.banner;
   render() {
     return (
-      <BannerAnim prefixCls="banner-user" autoPlay>
-        {
-          this.bannerstore.map((item, i) => {
-            return (
-              <Element prefixCls="banner-user-elem" key={i}>
-                <BgElement key={`bg${i}`} className="bg"
-                  style={{
-                    backgroundImage: `url(${item.imghref})`,
-                    backgroundSize: 'cover',
-                    backgroundRepeat:'no-repeat'
-                  }}
-                />
+      <div>
+        <BannerAnim prefixCls="banner-user" autoPlay>
+          {
+            this.bannerstore.map((item, i) => {
+              return (
+                <Element prefixCls="banner-user-elem" key={i} style={{backgroundColor: '#000'}}>
+                  <BgElement key={`bg${i}`} className="bg"
+                    style={{
+                      backgroundImage: `url(${item.imghref})`,
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                      opacity:0.6, filter: 'alpha(opacity=60)'
+                    }}
+                  />
                   <TweenOne className="banner-user-title" animation={{ y: 30, opacity: 0, type: 'from' }}>
                     {item.title}
                   </TweenOne>
                   <TweenOne className="banner-user-text" animation={{ y: 30, opacity: 0, type: 'from', delay: 100 }}>
                     {item.text}
                   </TweenOne>
-              </Element>
-            )
-          })
-        }
-
-      </BannerAnim>);
+                </Element>
+              )
+            })
+          }
+        </BannerAnim>
+      </div>);
   }
 }
