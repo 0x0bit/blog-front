@@ -4,7 +4,7 @@ import { FieldTimeOutlined, EyeOutlined, LikeOutlined, UserOutlined } from '@ant
 import homestore from './store';
 
 const IconText = ({ icon, text, color = 'skyblue' }: any) => (
-  <span style={{padding: '0 10px', fontSize: '10px'}}>
+  <span style={{padding: '0 10px', fontSize: '12px'}}>
     {React.createElement(icon, { style: { marginRight: '5px', color: color, textSize: 20 } })}
     {text}
   </span>
@@ -39,7 +39,7 @@ export default class ArticleList extends React.Component<any, any>{
               }
               actions={[
                 <IconText icon={UserOutlined} text={item.author} key={1} />,
-                <IconText icon={FieldTimeOutlined} text={item.issueDate} key={2} />,
+                <IconText icon={FieldTimeOutlined} text={item.issueDate} key={2} className="xs-hidden"/>,
                 <IconText icon={EyeOutlined} text={item.pageView} key={3} />,
                 <IconText icon={LikeOutlined} color='red' text={item.pageView} key={4} />
               ]}
