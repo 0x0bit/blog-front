@@ -35,7 +35,8 @@ class homestore {
       pageView: 1000,
       giveLike: 500,
       articleImg: '../../assets/test.jpg',
-      tag: 'Node.js'
+      tag: 'Node.js',
+      url: '../article-content'
     },
     {
       id: 2,
@@ -48,7 +49,8 @@ class homestore {
       pageView: 1000,
       giveLike: 500,
       articleImg: '../../assets/test.jpg',
-      tag: 'Node.js'
+      tag: 'Node.js',
+      url: '../article-content'
     },
     {
       id: 3,
@@ -59,7 +61,8 @@ class homestore {
       pageView: 1000,
       giveLike: 500,
       articleImg: '../../assets/test.jpg',
-      tag: 'Node.js'
+      tag: 'Node.js',
+      url: '../article-content'
     }
   ];
 
@@ -77,7 +80,8 @@ class homestore {
         pageView: 1000,
         giveLike: 500,
         articleImg: '../../assets/test.jpg',
-        tag: 'JavaScript'
+      tag: 'JavaScript',
+      url: '../article-content'
       }
   ]
 

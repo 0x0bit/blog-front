@@ -48,7 +48,7 @@ export default class ArticleList extends React.Component<any, any>{
               <List.Item.Meta
                 className="article-title"
                 title={
-                  <a href={`/article/detailed/${item.id}`}>
+                  <a href='../article-content'>
                     <Tag color="#2db7f5">{item.tag}</Tag>{item.title}
                   </a>
                 }
