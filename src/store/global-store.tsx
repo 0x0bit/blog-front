@@ -8,7 +8,6 @@ import Login from '../pages/login/login';
 import Language from '../pages/language';
 import User from '../pages/user';
 import LeaveMsg from '../pages/leave-message';
-
 export class GlobalStore {
   @observable navSource = {
     theme: 'light', // 主题颜色 light or dark

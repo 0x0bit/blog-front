@@ -6,7 +6,7 @@ import { ConfigProvider, Layout } from 'antd';
 import { enquireScreen } from 'enquire-js';
 const { Footer } = Layout;
 import { Provider } from 'mobx-react'
-
+import ArticleContent from './pages/article-content'
 
 
 // 全局数据文件
@@ -61,6 +61,7 @@ class App extends React.Component {
                 )
               })
             }
+            <Route  path='/article-content' component={ArticleContent} key={19} />
             <Route component={Page404} />
           </Switch>
         </Router>
