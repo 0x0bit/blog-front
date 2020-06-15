@@ -10,3 +10,5 @@ test.js
 package-lock.json
 config/config.js
 coverage
+yarn.lock
+yarn-error.log
