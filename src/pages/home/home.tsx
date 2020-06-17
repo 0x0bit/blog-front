@@ -11,7 +11,6 @@ const { Meta } = Card;
 
 export default class Home extends React.Component<any, any>{
   public store = homestore;
-
   render() {
     const store = this.store;
     return (
